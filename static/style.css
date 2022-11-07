@@ -1,0 +1,163 @@
+sub {
+  font-size: 5px;
+}
+
+body {
+  background: #2C3639 !important;
+}
+
+hr {
+  color: #DCD7C9;
+}
+
+
+#jumbo {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-color: #DCD7C9;
+  border: 2px solid darkgray;
+}
+
+#jumbow {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-color: #DCD7C9;
+  border: 2px solid darkgray;
+}
+
+#jumbo2 {
+  padding-top: 10px;
+  padding-bottom: 5px;
+  background-color: #DCD7C9;
+  border: 2px solid darkgray;
+}
+
+#hedging {
+  background-color: #faa;
+}
+
+#vocab {
+  background-color: rgb(215, 189, 226);
+}
+
+#imposter {
+  background-color: #8ef;
+}
+
+#main_div {
+  padding-top: 10px;
+}
+
+
+/* Side Nav */
+
+
+
+#logo {
+  font-family: "Lucida Console", "Courier New", monospace;
+  color: #FF9F29;
+  text-align: center;
+  border-radius: 25px;
+  border: 3px solid #FF9F29;
+  padding: auto;
+  padding-top: 10px;
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #3F4E4F;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #DCD7C9;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #FF9F29;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+#main_contents {
+  transition: margin-left .5s;
+  padding: 16px;
+}
+
+#open_icon {
+  color: #FF9F29;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 25px;
+  }
+
+  .sidenav a {
+    font-size: 18px;
+  }
+}
+
+@media only screen and (max-width: 720px) {
+  img {
+    display: none;
+  }
+}
+
+
+/* BUTTON */
+
+.btn-mine {
+  color: #FAF3E3;
+  background-color: #3F4E4F;
+  border-color: #A27B5C
+}
+
+.btn-mine:hover {
+  color: #DCD7C9;
+  background-color: #A27B5C;
+  border-color: #3F4E4F
+}
+
+
+.btn-mine.focus {
+  box-shadow: 0 0 0 .2rem #FAF3E3
+}
+
+
+.btn-outline-primary {
+  color: #7cc;
+  background-color: transparent;
+  background-image: none;
+  border-color: #7cc
+}
+
+.btn-outline-primary:hover {
+  color: #222;
+  background-color: #8ad3d3;
+  border-color: #7cc
+}
+
+.btn-outline-primary:focus,
+.btn-outline-primary.focus {
+  box-shadow: 0 0 0 .2rem rgba(119, 204, 204, 0.5)
+}
+

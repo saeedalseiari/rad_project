@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+<div id="main_div">
+
+    <div class="container">
+        <div class="mt-4 p-3 rounded" id="jumbo">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-9">
+                        <h1 style="color: #2C3639">Report Quality Tool</h1>
+                    </div>
+                </div>
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <p><button class="form-control btn-mine" type="submit">Process
+                            Report</button>
+                    </p>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <br>
+
+    {% if submitted %}
+    <div class="container">
+        <div class="mt-4 p-5 rounded" id="jumbo2">
+            <div class="row">
+                <div class="col-sm-8">
+                    <p>
+                        {{ report | safe}}
+                    </p>
+                </div>
+                <div class="col-sm-4" style="border:2px solid darkgrey; background:white">
+                    <strong>
+                        <h4>Quality Score</h4>
+                        <hr>
+                        <p>
+                            {{ h_score | safe}}<br>
+                            {{ ni_score | safe}}<br>
+                            {{ voc_score | safe}}<br>
+                        </p>
+                        <hr>
+                        <p>
+                            {{ q_score | safe }}
+                        </p>
+                    </strong>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock content %}

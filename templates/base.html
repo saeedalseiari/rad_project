@@ -1,0 +1,73 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/bootstrap.min.css" />
+    <link rel="stylesheet" href="../static/style.css" />
+    <title>"Rad-Tools"</title>
+  </head>
+
+  <body>
+    <div id="mySidenav" class="sidenav">
+      <div id="logo">
+        <div class="fs-2 mb-3">
+          <h3>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              fill="currentColor"
+              class="bi bi-radioactive"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1ZM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Z"
+              ></path>
+              <path
+                d="M9.653 5.496A2.986 2.986 0 0 0 8 5c-.61 0-1.179.183-1.653.496L4.694 2.992A5.972 5.972 0 0 1 8 2c1.222 0 2.358.365 3.306.992L9.653 5.496Zm1.342 2.324a2.986 2.986 0 0 1-.884 2.312 3.01 3.01 0 0 1-.769.552l1.342 2.683c.57-.286 1.09-.66 1.538-1.103a5.986 5.986 0 0 0 1.767-4.624l-2.994.18Zm-5.679 5.548 1.342-2.684A3 3 0 0 1 5.005 7.82l-2.994-.18a6 6 0 0 0 3.306 5.728ZM10 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"
+              ></path></svg
+            >RAD TOOLS
+          </h3>
+        </div>
+      </div>
+
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
+        >&times;</a
+      >
+
+      <a href="/thyroid/home">Home</a>
+      <a href="/report">Report Quality</a>
+      <a href="/thyroid">Thyroid US</a>
+      {% comment %} <a href="/cmr">Cardiac MRI</a> {% endcomment %}
+      <a href="/thyroid/home">Cardiac MRI</a>
+      <a href="#">Contact</a>
+    </div>
+    <div id="main_contents">
+      <span
+        id="open_icon"
+        style="font-size: 30px; cursor: pointer"
+        onclick="openNav()"
+        >&#9776; open menu</span
+      >
+      {% block content %} {% endblock content %}
+      <hr color="#DCD7C9" />
+      <h5 id="cr" style="color: #dcd7c9; text-align: center">
+        <strong>© 2022 Saeed Alseiari</strong>
+      </h5>
+    </div>
+
+    <script src="../static/bootstrap.min.css"></script>
+    <script>
+      function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+        document.getElementById("main_contents").style.marginLeft = "250px";
+      }
+
+      function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+        document.getElementById("main_contents").style.marginLeft = "0";
+      }
+    </script>
+  </body>
+</html>

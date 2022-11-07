@@ -1,0 +1,160 @@
+{% extends 'base.html' %} {% block content %}
+<div id="main_div">
+  <div class="container">
+    <div class="mt-4 p-3 rounded" id="jumbo">
+      <h1 style="color: #2c3639; text-align: center">
+        Thyroid Ultrasound and Nodule Characterization
+      </h1>
+      <br />
+      <div class="form-group">
+        
+        <form action="" method="post">
+          {% csrf_token %}
+          <div style="border: 2px solid darkgrey; padding: 15px">
+            <div class="col-sm" style="padding-bottom: 15px">
+              <h3>Thyroid Gland</h3>
+              <div class="row">
+                
+                <div class="col-sm">
+                  <h4>{{ form.parenchyma.label }}</h4>
+                  <br />
+                  {{ form.parenchyma }}
+                </div>
+                <div class="col-sm">
+                  <div>
+                    <h5>{{ form.rt_vol.label }}{{ form.rt_vol }}</h5>
+
+                    <h5 style="padding-top: 15px">{{ form.lt_vol.label }}{{ form.lt_vol }}</h5>
+
+                    <h5 style="padding-top: 15px">{{ form.isthmus.label }}{{ form.isthmus }}</h5>
+
+                  </div>
+                </div>
+                <div class="col-sm">
+                  <div><br>
+                    <img src="..\static\thyro.jpg" alt="image" class="rounded-circle img-thumbnail mx-auto d-block"
+                      style="width: 150px; height: 170px; opacity: 0.7;" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br />
+
+          <div style="border: 2px solid darkgrey; padding: 15px">
+            
+            <div>
+              <h3>Nodule Characterization</h3>
+              <h4>Location</h4>
+              <div class="row">
+                <div class="col-sm" style="padding-bottom: 15px">
+                  <h4>{{ form.lobe.label }}</h4>
+                  {{ form.lobe }}
+                </div>
+                <div class="col-sm">
+                  <h4>{{ form.aspect.label }}</h4>
+                  {{ form.aspect }}
+                </div>
+                <div class="col-sm">
+                  <h4>{{ form.position.label }}</h4>
+                  {{ form.position }}
+                </div>
+                <div class="col-sm">
+                  <div>
+                    <h5>{{ form.length.label }}{{ form.length }}</h5>
+
+                    <h5 style="padding-top: 15px">{{ form.width.label }}{{ form.width }}</h5>
+
+                    <h5 style="padding-top: 15px">{{ form.height.label }}{{ form.height }}</h5>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row" style="padding-top: 15px">
+              <div class="col-sm">
+                <h4>{{ form.composition.label }}</h4>
+                {{ form.composition }}
+              </div>
+              <div class="col-sm-2.5">
+                <h4>{{ form.echogenicity.label }}</h4>
+                {{ form.echogenicity }}
+              </div>
+              <div class="col-sm-2">
+                <h4>{{ form.shape.label }}</h4>
+                {{ form.shape }}
+              </div>
+              <div class="col-sm">
+                <h4>{{ form.margins.label }}</h4>
+                {{ form.margins }}
+              </div>
+              <div class="col-sm-3">
+                <h4>{{ form.foci.label }}</h4>
+                {{ form.foci }}
+              </div>
+            </div>
+          </div>
+          <!-- ============================================== -->
+          <br />
+          <div class="row">
+            <div class="col-sm">
+              <button type="submit" class="form-control btn-mine" name="add_nodule">
+                Add Nodule
+              </button>
+            </div>
+
+            <div class="col-sm">
+              <button type="submit" class="form-control btn-mine" name="reset_form">
+                Reset Form
+              </button>
+            </div>
+          </div>
+          <!-- ============================================== -->
+          <br />
+          <div class="row">
+            <div class="col-sm">
+              <h5>{{ form.nodule_num.label }}</h5>
+            </div>
+
+            <div class="col-sm">{{ form.nodule_num }}</div>
+            <div class="col-sm">
+              <h5>Number of Nodules: {{ nodules | length}}</h5>
+            </div>
+            <div class="col-sm">
+              <button type="submit" class="form-control btn-mine" name="modify_nodule">
+                Modify Nodule
+              </button>
+
+            </div>
+
+            <!-- ============================================== -->
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  {% if submitted %}
+  <div class="container">
+    <div class="mt-4 p-3 rounded" id="jumbo">
+      <div class="form-group">
+        {% if invalid_selection %}
+        <div class="alert alert-danger" role="alert">
+          Invalid nodule selection!
+        </div>
+        {% endif %}
+        <div class="row">
+          <div>
+            {{ gland | safe }} <br />
+            {% for n in nodules %} {{ n | safe }} {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% endif %}
+  </div>
+
+  {% endblock content %}
+</div>

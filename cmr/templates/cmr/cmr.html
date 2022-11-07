@@ -1,0 +1,246 @@
+{% extends 'base.html' %} {% block content %}
+<div id="main_div">
+    <div class="container">
+        <div class="mt-4 p-3 rounded" id="jumbo">
+            <h1 style="color: #2c3639; text-align: center">
+                CMR Learning and Reporting Assistant (CLARA)
+            </h1>
+            <br />
+            <div class="form-group">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div style="border: 2px solid darkgrey; padding: 15px">
+                        <div class="col-sm" style="padding-bottom: 15px">
+                            <h3>Patient Information</h3>
+                            <div class="row">
+
+                                <div class="col-sm-5">
+                                    <h5>{{ form.first_name.label }}{{ form.first_name }}</h5>
+                                    <h5 style="padding-top: 15px">{{ form.last_name.label }}{{ form.last_name }}</h5>
+                                    <h5 style="padding-top: 15px">Patient's #: {{ form.mrn }}</h5>
+                                    <h5 style="padding-top: 15px;">{{ form.gender.label }}{{ form.gender }}</h5>
+
+                                </div>
+                                <div class="col-sm-5">
+                                    <div>
+                                        <h5>{{ form.age.label }}{{ form.age }}</h5>
+                                        <h5 style="padding-top: 15px">{{ form.height.label }}{{ form.height }}</h5>
+                                        <h5 style="padding-top: 15px">{{ form.weight.label }}{{ form.weight }}</h5>
+                                        <h5 style="padding-top: 15px">Body Surface Area: {{bsa}}</h5>
+
+                                    </div>
+                                </div>
+                                <div class="col-sm">
+                                    <div><br>
+                                        <img src="..\static\FourCH.gif" alt="image"
+                                            class="rounded-circle img-thumbnail mx-auto d-block"
+                                            style="width: 200px; height: 200px;" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+
+                    <div style="border: 2px solid darkgrey; padding: 15px">
+
+                        <div>
+                            <h3>Volumetry Data</h3>
+                            <div class="row">
+                                <div class="col-sm-4" style="padding-left: 15px">
+                                    <h5>{{ form.ledv.label }}
+                                        {{ form.ledv }}</h5>
+                                </div>
+                                <div class="col-sm-4" style="padding-left: 15px">
+                                    <h5>{{ form.lesv.label }}
+                                        {{ form.lesv }}</h5>
+                                </div>
+                                <div class="col-sm-4" style="padding-left: 15px">
+                                    <h5>{{ form.lmm.label }}
+                                        {{ form.lmm }}</h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4" style="padding-left: 15px">
+                                    <h5>{{ form.redv.label }}
+                                        {{ form.redv }}</h5>
+                                </div>
+                                <div class="col-sm-4" style="padding-left: 15px">
+                                    <h5>{{ form.resv.label }}
+                                        {{ form.resv }}</h5>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" style="padding-top: 15px">
+                            <div class="col-sm">
+                                <h4>{{ form.composition.label }}</h4>
+                                {{ form.composition }}
+                            </div>
+                            <div class="col-sm-2.5">
+                                <h4>{{ form.echogenicity.label }}</h4>
+                                {{ form.echogenicity }}
+                            </div>
+                            <div class="col-sm-2">
+                                <h4>{{ form.shape.label }}</h4>
+                                {{ form.shape }}
+                            </div>
+                            <div class="col-sm">
+                                <h4>{{ form.margins.label }}</h4>
+                                {{ form.margins }}
+                            </div>
+                            <div class="col-sm-3">
+                                <h4>{{ form.foci.label }}</h4>
+                                {{ form.foci }}
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ============================================== -->
+                    <br />
+                    <div class="row">
+                        <div class="col-sm">
+                            <button type="submit" class="form-control btn-mine" name="add_nodule">
+                                Submit
+                            </button>
+                        </div>
+
+                        <div class="col-sm">
+                            <button type="submit" class="form-control btn-mine" name="reset_form">
+                                Reset Form
+                            </button>
+                        </div>
+                    </div>
+                    <!-- ============================================== -->
+                    <br />
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {% if submitted %}
+    <div class="container">
+        <div class="mt-4 p-5 rounded" style="padding-top: 5px;
+        padding-bottom: 5px;
+        background-color: white;
+        border: 2px solid darkgray;">
+            <div>
+                <div>
+                    <table cellpadding="5" border="1">
+                        <tr>
+                            <th>Left Ventricle</th>
+                            <th>Normal Female/Male*</th>
+                            <th>Values</th>
+                        </tr>
+                        <tr>
+                            <th>LV Ejection Fraction (LVEF) [%]</th>
+                            <td>58-76 / 58-75</td>
+                            <td>{{ lvef }}%</td>
+                        </tr>
+                        <tr>
+                            <th>End diastolic Volume (EDV) [ml]</th>
+                            <td>88-168 / 115-198</td>
+                            <td>{{ ledv }}</td>
+                        </tr>
+                        <tr>
+                            <th>End Diastolic Volume Indexed (EDVI) [ml/m<sup>2</sup>]</th>
+                            <td>57-92 / 63-98</td>
+                            <td>{{ ledvi }}</td>
+                        </tr>
+                        <tr>
+                            <th>End Systolic Volume (ESV) [ml]</th>
+                            <td>23-60 / 30-75</td>
+                            <td>{{ lesv }}</td>
+                        </tr>
+                        <tr>
+                            <th>End Systolic Volume Indexed (ESVI) [ml/m<sup>2</sup>]</th>
+                            <td>15-34 / 16-38</td>
+                            <td>{{ lesvi }}</td>
+                        </tr>
+                        <tr>
+                            <th>Stroke Volume (SV) [ml]</th>
+                            <td>58-114 / 76-132</td>
+                            <td>{{ lsv }}</td>
+                        </tr>
+                        <tr>
+                            <th>Stroke Volume Indexed (SVI) [ml/m<sup>2</sup>]</th>
+                            <td>38-63 / 41-65</td>
+                            <td>{{ lsvi }}</td>
+                        </tr>
+                        <tr>
+                            <th>Myocardial Mass (ED) [g]</th>
+                            <td>72-144 / 108-184</td>
+                            <td>{{ lmm }}</td>
+                        </tr>
+                        <tr>
+                            <th>Myocardial Mass Indexed (ED) [g/m<sup>2</sup>]</th>
+                            <td>48-77 / 58-91</td>
+                            <td>{{ lmmi }}</td>
+                        </tr>
+
+                    </table>
+                    <br>
+                    <table cellpadding="5" border="1" style="background-color:white">
+                        <tr>
+                            <th>Right Ventricle</th>
+                            <th>Normal Female/Male*</th>
+                            <th>Values</th>
+                        </tr>
+                        <tr>
+                            <th>RV Ejection Fraction (RVEF) [%]</th>
+                            <td>54-78 / 53-78</td>
+                            <td>{{ rvef }}%</td>
+                        </tr>
+                        <tr>
+                            <th>End diastolic Volume (EDV) [ml]</th>
+                            <td>84-168 / 113-213</td>
+                            <td>{{ redv }}</td>
+                        </tr>
+                        <tr>
+                            <th>End Diastolic Volume Indexed (EDVI) [ml/m<sup>2</sup>]</th>
+                            <td>55-92 / 60-106</td>
+                            <td>{{ redvi }}</td>
+                        </tr>
+                        <tr>
+                            <th>End Systolic Volume (ESV) [ml]</th>
+                            <td>17-69 / 27-86</td>
+                            <td>{{ resv }}</td>
+                        </tr>
+                        <tr>
+                            <th>End Systolic Volume Indexed (ESVI) [ml/m<sup>2</sup>]</th>
+                            <td>12-38 / 14-43</td>
+                            <td>{{ resvi }}</td>
+                        </tr>
+                        <tr>
+                            <th>Stroke Volume (SV) [ml]</th>
+                            <td>57-108 / 72-140</td>
+                            <td>{{ rsv }}</td>
+                        </tr>
+                        <tr>
+                            <th>Stroke Volume Indexed (SVI) [ml/m<sup>2</sup>]</th>
+                            <td>36-60 / 38-70</td>
+                            <td>{{ rsvi }}</td>
+                        </tr>
+
+                    </table>
+                </div><br><br>
+                <div>
+                    <strong>
+                        <h4>Auto-Observations</h4>
+                        <hr>
+                        <p>
+                            HINTS
+                        </p>
+                       
+               
+                    </strong>
+
+                </div>
+            </div>
+        </div>
+
+        {% endif %}
+    </div>
+
+    {% endblock content %}
+</div>

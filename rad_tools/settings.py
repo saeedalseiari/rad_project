@@ -44,11 +44,13 @@ INSTALLED_APPS = [
     "report.apps.ReportConfig",
     "thyroid.apps.ThyroidConfig",
     "home.apps.HomeConfig",
+    "django.contrib.staticfiles",
     "cmr.apps.CmrConfig"
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -126,7 +128,10 @@ USE_TZ = True
 STATIC_ROOT = BASE_DIR / "staticfiles"
 STATIC_URL = "static/"
 # STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
-django_heroku.settings(locals())
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+# django_heroku.settings(locals())
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
